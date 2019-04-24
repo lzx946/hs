@@ -36,6 +36,7 @@ import WeixinPhoneNews from '@/components/WeixinPhoneNews'
 import WeixinPhoneNewsDetail from '@/components/WeixinPhoneNewsDetail'
 import WeixinPhoneBlank from '@/components/WeixinPhoneBlank'
 import WeixinPhoneConUs from '@/components/WeixinPhoneConUs'
+import ProfessorPersonalModifyInfo from '@/components/professor/index'
 Vue.use(Router)
 
 export default new Router({
@@ -204,6 +205,11 @@ export default new Router({
             path: '/weixinphone/conus',
             name: 'WeixinPhoneConUs',
             component: WeixinPhoneConUs
+        },
+        {
+            path: '/professor/personal/modifyInfo',
+            name: 'ProfessorPersonalModifyInfo',
+            component: ProfessorPersonalModifyInfo
         }
         
     ]
