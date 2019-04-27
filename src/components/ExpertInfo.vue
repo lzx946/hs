@@ -31,6 +31,18 @@
 					</div>-->
                     <span>课程管理</span>
                 </div>
+                <div class="tsama-info-left-menu" v-on:click="getInfo(2)" :class="{'tsama-info-left-menu-active':active==2}">
+                    <!--<div style="clear:left;float: left;margin-left: 3.5em;">
+						<icon :scale="2.2" name="courseIcon"></icon>
+					</div>-->
+                    <span>课程跟踪详情</span>
+                </div>
+                <div class="tsama-info-left-menu" v-on:click="getInfo(3)" :class="{'tsama-info-left-menu-active':active==3}">
+                    <!--<div style="clear:left;float: left;margin-left: 3.5em;">
+						<icon :scale="2.2" name="courseIcon"></icon>
+					</div>-->
+                    <span>行程跟踪详情</span>
+                </div>
             </div>
             <!-- right content -->
             <div style="background: #ECECEC;width: 100%;height: 100%;margin-left: 12em;min-height: 1280px;padding: 0.1em 1em; padding-bottom: 20em;">
@@ -236,8 +248,16 @@
                     </div>
                     <a v-if="!isShowTimeLocalFlag" style="margin-left: 115px;line-height: 35px;cursor: pointer;" v-on:click="addTimeAndLocal()">添加</a>
                 </div>
-                <button class="btn btn-primary" @click="submitCourse()">提交课程信息</button>
+                <button class="btn btn-primary" @click="submitCourse()" v-if="active == 0 || active == 1">提交课程信息</button>
+                <!-- 课程跟踪详情 -->
+                <div v-if="active==2" v-cloak>
+                    <courseTrackingDetail></courseTrackingDetail>
+                </div>
+                <div v-if="active==3" v-cloak>
+                    <scheduleTrackingDetail></scheduleTrackingDetail>
+                </div>
             </div>
+            
         </div>
     </div>
     </div>
@@ -249,10 +269,14 @@
     import { common } from '@/util/common.js'
     import 'babel-polyfill';
     import myDatepicker from 'vue-datepicker-simple/datepicker-2.vue';
+    import courseTrackingDetail from './Professor/courseTrackingDetail'
+    import scheduleTrackingDetail from './Professor/scheduleTrackingDetail'
     export default {
         name: 'ExpertInfo',
         components: {
-            'date-picker': myDatepicker
+            'date-picker': myDatepicker,
+            courseTrackingDetail,
+            scheduleTrackingDetail
         },
         data() {
             return {
@@ -638,6 +662,7 @@
                 if(index == 1) {
                     this.active = 1;
                 }
+                this.active = index;
             },
             //          fixEmailClick: function () {
             //              this.isShowFixEmailFlag = !this.isShowFixEmailFlag;
